@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> GeoTag Interactive Mapping Exercise</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+</head>
+<style>
+
+.sidebar {
+  position: absolute;
+  left: 0px;
+  width: 250px;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  padding: 20px;
+  font-size: 16px;
+  border: solid;
+  background-color: #add8e6;
+}
+.main-heading {
+    font-size: 15px;
+}
+</style>
+<body>
+  <div class="sidebar">
+  <font color="#3D9970"><center><h2 id="main-heading" >GeoTag Mapping</h2></center></font>
+  <div>
+
+<div class="row">
+  <div class="column">
+    <center> <img src="images/penn.jpg" alt="Temple Logo" style="width:60%"> </center>
+  </div>
+  <font color="MidnightBlue"><center><h3> I love interactive maps!</h3></center></font>
+  </div>
+
+<h1> Saxbys Coffee </h1>
+<h2> Schattner Center, School of Dental Medicine </h2>
+<h3> University of Pennsylvania </h3>
+
+<footer>
+       <p> Share this template! <br> https://github.com/mckeont/GeoTag </p>
+</footer>
+
+    <div id="map" style=" position: fixed; right: 0; left: 300px; top: 0; bottom: 0 "></div>
+
+    <!-- JS IMPORTS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src= "http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src= "js/setup.js"></script>
+    <script src= "js/saxbys.js"></script>
+
+    <script>
+
+// Create a style variable
+    var myStyle = {
+    radius: 5,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.7
+};
+
+//Load in geojson
+    var saxbys =   L.geoJSON(saxbys, {
+          style: myStyle
+        }).bindPopup(function (layer) {
+       return "" + layer.feature.properties.name
+    }).addTo(map).bringToBack();
+
+// Make a simple circle
+var circle = L.circle([39.952767446597335, -75.203429916064], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 5
+}).addTo(map);
+
+// Make a shape
+var polygon = L.polygon([
+            [ 39.953004074788396,
+			-75.2038469451327
+            ],
+            [
+             39.9527972210505, -75.20391440571753
+            ],
+            [
+              39.952781550287455, -75.20386738773456
+            ],
+            [
+             39.952747074595635, -75.20387352051506
+            ],
+            [
+              39.95269379394671, -75.20345649144569
+            ],
+            [
+                            39.95259976917126, -75.20348511108783
+            ],
+            [
+              39.952591933767536, -75.20350350942866
+             
+            ],
+            [
+              39.952560592143755, -75.20351781925004
+            ],
+            [
+              39.952569994632114, -75.20358936835498
+            ],
+            [
+              39.95251984801064, -75.20359958965561
+            ],
+            [
+              39.95246186593383, -75.20318869336676
+            ],
+            [
+              39.95249320760334, -75.20318256058627
+            ],
+            [
+              39.952508878432496, -75.20312940982278
+              
+            ],
+            [
+              39.952535518834196, -75.20313349834292
+            ],
+            [
+              39.95256686046946, -75.20317029502588
+            ],
+            [
+              39.952591933767536, -75.20316211798502
+            ],
+            [
+              39.95258723252482, -75.20310487870081
+            ],
+            [
+              39.952637379097325, -75.20309056888009
+            ],
+            [
+              39.95265148281382, -75.20315189668442
+            ],
+            [
+              39.95269536102538, -75.20314985242402
+            ],
+            [
+              39.952679690238995, -75.20308648035994
+            ],
+            [
+              39.95272983674326, -75.20307421479897
+            ],
+            [
+              39.95272826966536, -75.20301084273423
+            ],
+            [
+              39.9528505016184, -75.20297200179151
+            ],
+            [
+              39.95285520284307, -75.20299857717389
+            ],
+            [
+              39.952894379702315, -75.20298222309277
+            ],
+            [
+              39.953004074788396, -75.2038469451327
+            ]
+]).addTo(map);
+
+// Add a marker
+L.marker([39.983219999796114, -75.15356557830536]).addTo(map);
+    </script>
+
+</body>
+</html>
